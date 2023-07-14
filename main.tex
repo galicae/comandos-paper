@@ -92,20 +92,28 @@ the higher mapping scores, implying mostly one-to-one relationships between cell
 One of the more challenging aspects of cross-species comparisons is finding the conserved gene
 expression patterns that will lend credence to hypothesized evolutionary relationships between cell
 types. SAMap proposes pairs of genes that show correlated expression between cell types, but offers
-no way to visualize this. \texttt{ComAnDOS} offers a re-implementation of the popular dotplot
-visualization that allows plotting the expression of multiple genes for two species at once. The
-dotplots of the query and target species are arranged to the left and right, accordingly.
-Furthermore, linking lines can be drawn between genes, visualizing relationships between them, such
-as homology (e.g. solid lines connecting orthologs and dashed lines connecting paralogs).
+no way to visualize this. ComAnDOS offers a re-implementation of the popular dotplot visualization
+that allows plotting the expression of multiple genes for two species at once. The dotplots of the
+query and target species are arranged to the left and right, accordingly. Furthermore, linking lines
+can be drawn between genes, visualizing relationships between them, such as homology (e.g. solid
+lines connecting orthologs and dashed lines connecting paralogs).
 
 \subsection{High-quality documentation and modularity for easy extension}
 
 The nature of scRNA-seq data analysis in general and cross-species comparisons in particular is
 exceedingly exploratory. Comparative plots must reflect this exploratory nature, and be easy to
-repurpose and extend. To this end, the functions in \texttt{ComAnDOS} are deliberately kept generic,
-exposed to the users, and documented extensively. For example, the paired dotplot function can be
-used to visualize any combination of gene groups, connected in any way desired by the user.
+repurpose and extend. To this end, the functions in ComAnDOS are deliberately kept generic, exposed
+to the users, and documented extensively. For example, the paired dotplot function can be used to
+visualize any combination of gene groups, connected in any way desired by the user.
 
+\section{}
+
+\section{Conclusions}
+
+ComAnDOS offers tools that facilitate common plotting tasks in scRNA-seq cross-species comparisons.
+This unlocks the full potential of SAMap, the premiere tool for cross-species comparisons. By
+visualizing cluster relationships and gene expression patterns, ComAnDOS allows the exploration of
+evolutionary relationships between cell types in a more intuitive way.
 
 \bibliographystyle{plain}
 \bibliography{main.bib}
