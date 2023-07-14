@@ -63,10 +63,52 @@ Originally, people just kept one-to-one orthologs and reduced the scRNA-seq data
 that. This has the problem that it assumes too many things - A) that the orthologs are conserved not
 only in sequence, but also in function, location, timing, and magnitude of expression, and B) that
 all the subfunctionalisation that happened throughout evolution is basically meaningless and we'll
-get the important details despite discarding something like 60-80\% of the information.
+get the important details despite discarding something like 60-80\% of the information. This worked
+surprisingly well \cite{welch2019single}, but it was clear that it was not the best way to do it.
 
-% \bibliographystyle{plain}
-% \bibliography{main.bib}
-% \include{bibliography}
+This changed with SAMap \cite{tarashansky2021mapping}, which takes a BLAST map of genes as input,
+and takes turns optimizing a cell-cell graph and a gene-gene graph until convergence. SAMap was a
+game-changer for cross-species comparisons, and is now the de-facto standard for this kind of work.
+However, SAMap is not without its limitations. The two most important ones are that it is rather
+hard to install and use (also owing to suboptimal documentation), and that it doesn't offer
+intuitive downstream analysis tools. The Sankey plot is fit for infographics but nothing more, and
+circle plots were never useful for anything in the recorded history of mankind.
+
+\section{Advanced visualizations for cross-species comparisons}
+
+\subsection{Replacing Sankey plots with annotated heatmaps}
+
+One of the main outputs of SAMap is a table of mapping scores between query and target clusters.
+This table naturally lends itself to a heatmap visualization. We provide wrappers around the heatmap
+functions of the \texttt{seaborn} Python library \cite{bisong2019matplotlib} to automate the
+plotting of annotated heatmaps that can visualize cell type mapping scores along with a coarse level
+clustering, such as tissue or cell type family. By visualizing all pairwise cluster mapping scores
+the hierarchical nature of cell type relationships becomes evident, with cell type families across
+species clustering together in the heatmap. This is in contrast to the Sankey plot, which only shows
+the higher mapping scores, implying mostly one-to-one relationships between cell types.
+
+\subsection{Visualizing cross-species gene expression}
+
+One of the more challenging aspects of cross-species comparisons is finding the conserved gene
+expression patterns that will lend credence to hypothesized evolutionary relationships between cell
+types. SAMap proposes pairs of genes that show correlated expression between cell types, but offers
+no way to visualize this. \texttt{ComAnDOS} offers a re-implementation of the popular dotplot
+visualization that allows plotting the expression of multiple genes for two species at once. The
+dotplots of the query and target species are arranged to the left and right, accordingly.
+Furthermore, linking lines can be drawn between genes, visualizing relationships between them, such
+as homology (e.g. solid lines connecting orthologs and dashed lines connecting paralogs).
+
+\subsection{High-quality documentation and modularity for easy extension}
+
+The nature of scRNA-seq data analysis in general and cross-species comparisons in particular is
+exceedingly exploratory. Comparative plots must reflect this exploratory nature, and be easy to
+repurpose and extend. To this end, the functions in \texttt{ComAnDOS} are deliberately kept generic,
+exposed to the users, and documented extensively. For example, the paired dotplot function can be
+used to visualize any combination of gene groups, connected in any way desired by the user.
+
+
+\bibliographystyle{plain}
+\bibliography{main.bib}
+\include{bibliography}
 
 \end{document}
